@@ -7,7 +7,7 @@ class LendersController < ApplicationController
     @lender = Lender.create(lender_params)
     if @lender.save
       session[:user_type] = "lender"
-      session[:user_id] = @lender.id
+      log_in @lender
       flash[:success] = "Welcome, Lender!"
       redirect_to "/lenders/#{@lender.id}"
     else

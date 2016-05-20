@@ -4,8 +4,10 @@ class BorrowersController < ApplicationController
   def create
     @borrower = Borrower.create(borrower_params)
     if @borrower.save
+      session[:user_type] = "borrower"
+      log_in @borrower
       flash[:success] = "Welcome, Borrower!"
-      redirect_to borrower_path
+      redirect_to "borrowers/#{@borrower.id}"
     else
       flash[:errors] = @borrower.errors.full_messages
       redirect_to :back

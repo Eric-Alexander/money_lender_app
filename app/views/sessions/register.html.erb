@@ -3,55 +3,55 @@
 <div class="row">
   <div class="col-md-4 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-offset-1">
     <h1>Lender</h1>
-    <%= form_for @lender do |f| %>
+    <%= simple_form_for @lender do |f| %>
 
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, class: 'form-control' %>
+    <%= f.input :first_name %>
 
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, class: 'form-control' %>
 
-    <%= f.label :email %>
-    <%= f.text_field :email, class: 'form-control' %>
+    <%= f.input :last_name %>
 
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
 
-    <%= f.label :money, 'Money Available to Lend' %>
-    <%= f.number_field :money, class: 'form-control' %><br>
+    <%= f.input :email %>
 
-    <%= f.submit 'Register', class: 'btn btn-success' %>
+
+    <%= f.input :password %>
+
+
+    <%= f.input :money  %>
+    <br>
+
+    <%= f.submit 'Register', :class => 'btn btn-success'  %>
     <% end %>
     <%= link_to "Already a Lender?", new_session_path %>
   </div>
 
   <div class="col-md-4 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-offset-1 ">
     <h1>Borrower</h1>
-    <%= form_for @borrower do |f| %>
+    <%= simple_form_for @borrower do |f| %>
 
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name, class: 'form-control' %>
+      <%= f.input :first_name %>
 
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name, class: 'form-control' %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.input :last_name %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :money_purpose %>
-      <%= f.text_field :money_purpose, class: 'form-control' %>
+      <%= f.input :email %>
 
-      <%= f.label :description %>
-      <%= f.text_area :description, class: 'form-control' %>
 
-      <%= f.label :money_needed %>
-      <%= f.number_field :money_needed, class: 'form-control' %>
+      <%= f.input :password %>
+
+
+      <%= f.input :money_purpose %>
+
+
+      <%= f.input :description %>
+
+
+      <%= f.input :money_needed %>
+
       <br>
 
-      <%= f.submit "Register", class: "btn btn-success" %>
+      <%= f.submit "Register", :class => "btn btn-success" %>
     <% end %>
     <%= link_to "Already a Borrower?", new_session_path %>
   </div>

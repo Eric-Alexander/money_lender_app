@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'hirb'
-
+gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'rails-footnotes'
 
