@@ -1,17 +1,15 @@
 Rails.application.routes.draw do
   root 'sessions#register'
 
-  resources :lenders
+  post 'sessions/new' => 'sessions#create'
 
-  resources :borrowers
+  resources :lenders, only: [:create, :show]
 
-  get 'sessions/login'
+  resources :borrowers, only: [:create, :show]
 
-  get 'sessions/register'
+  resources :sessions, only:  [:create, :register, :new, :destroy]
 
-  get 'borrowers/show'
 
-  get 'lenders/show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

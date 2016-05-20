@@ -1,2 +1,62 @@
-<h1>Lenders#show</h1>
-<p>Find me in app/views/lenders/show.html.erb</p>
+<h1> Hey there, <%= @lender.first_name %> <%= @lender.last_name %></h1>
+<h2> Account Balance: <%= @lender.money %> </h2>
+
+
+
+  <div class="col col-md-8">
+    <h3> Poor Begging Schmucks: </h3>
+    <table class= "table table-striped table-hover">
+      <thead>
+        <tr>
+          <th> Name:</th>
+          <th> Need Money for:</th>
+          <th> Reason for Loan:</th>
+          <th> Amount Needed:</th>
+          <th> Amount Raised:</th>
+          <th> Action:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @borrowers.each do |b| %>
+        <tr>
+          <td> <%= b.first_name %> <%= b.last_name %> </td>
+          <td> <%= b.money_purpose %> </td>
+          <td> <%= b.description %> </td>
+          <td> <%= number_to_currency(b.money_needed) %> </td>
+          <td> <%= number_to_currency(b.money_raised) %> </td>
+          <td> Button </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+    <div class="col col-md-8">
+      <h3> Schmucks you lent your money to: </h3>
+      <table class= "table table-striped table-hover">
+        <thead>
+          <tr>
+            <th> Name:</th>
+            <th> Needed Money for:</th>
+            <th> Reason for Loan:</th>
+            <th> Amount Needed:</th>
+            <th> Amount Raised:</th>
+            <th> Amount Lent:</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @borrowers.each do |b| %>
+          <tr>
+            <td> <%= b.first_name %> <%= b.last_name %> </td>
+            <td> <%= b.money_purpose %> </td>
+            <td> <%= b.description %> </td>
+            <td> <%= number_to_currency(b.money_needed) %> </td>
+            <td> <%= number_to_currency(b.money_raised) %> </td>
+            <td> Button </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+<%= link_to "Log out", session_path, method: "delete" %>

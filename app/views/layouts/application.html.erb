@@ -9,12 +9,23 @@
 <body>
 
 
-  <div class="container">
-      <% flash.each do |message_type, message| %>
-          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-      <% end %>
+    <% if flash[:errors] %>
+      <div id="error_explanation">
+        <div class="alert alert-danger">
+          <%= flash[:errors] %>
+        </div>
+      </div>
+    <% end %>
+    <% if flash[:success] %>
+      <div id="success_explanation">
+        <div class="alert alert-success">
+          <%= flash[:success] %>
+        </div>
+      </div>
+    <% end %>
+
       <%= yield %>
-  </div>
+
 
 
 

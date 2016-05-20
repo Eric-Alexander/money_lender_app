@@ -4,7 +4,7 @@
   <div class="col-md-4 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-offset-1">
     <h1>Lender</h1>
     <%= form_for @lender do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
+
     <%= f.label :first_name %>
     <%= f.text_field :first_name, class: 'form-control' %>
 
@@ -22,12 +22,12 @@
 
     <%= f.submit 'Register', class: 'btn btn-success' %>
     <% end %>
+    <%= link_to "Already a Lender?", new_session_path %>
   </div>
 
   <div class="col-md-4 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-offset-1 ">
     <h1>Borrower</h1>
     <%= form_for @borrower do |f| %>
-
 
       <%= f.label :first_name %>
       <%= f.text_field :first_name, class: 'form-control' %>
@@ -53,5 +53,6 @@
 
       <%= f.submit "Register", class: "btn btn-success" %>
     <% end %>
+    <%= link_to "Already a Borrower?", new_session_path %>
   </div>
 </div>

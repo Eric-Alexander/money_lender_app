@@ -18,16 +18,20 @@
 
 
  #error_explanation {
+   width: 400px;
+   padding: 40px 40px;
    color: red;
    ul {
      color: red;
      margin: 0 0 30px 0;
    }
  }
-
- .field_with_errors {
-   @extend .has-error;
-   .form-control {
-     color: red;
+ #success_explanation {
+   width: 400px;
+   padding: 40px 40px;
+   color: green;
+   ul {
+     color: green;
+     margin: 0 0 30px 0;
    }
  }
