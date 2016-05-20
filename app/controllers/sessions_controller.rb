@@ -2,28 +2,30 @@ class SessionsController < ApplicationController
   def new
 
 
+
+
   end
   def create
     puts "___________________________________"
-    @user = Lender.find_by(email: params[:session]["email"].downcase)
-    puts @user
-    if @user
-      if @user.authenticate(params[:session][:password])
-        log_in @user
+    user = Lender.find_by(email: params["session"][:email].downcase)
+    puts user
+    if user
+      if user.authenticate(params[:session][:password])
+        log_in user
         flash[:success] = "Welcome Back!"
         puts "+++++++++++++++++++++++++++++++"
-        puts lender_path
-        redirect_to "/lenders/#{@user.id}"
+
+        redirect_to "/lenders/#{user.id}"
       else
         flash[:errors] = ["Incorrect password for email"]
         redirect_to :back
       end
     else
-      @user = Borrower.find_by(email: params[:session])
-      if @user
-        if @user.authenticate(params[:password])
-          log_in @user
-          redirect_to "/borrowers/#{@user.id}"
+      user = Borrower.find_by(email: params["session"][:email].downcase)
+      if user
+        if user.authenticate(params[:password])
+          log_in user
+          redirect_to "/borrowers/#{user.id}"
         else
           flash[:errors] = ["Incorrect password for email"]
           redirect_to :back

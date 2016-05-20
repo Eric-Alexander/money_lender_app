@@ -1,5 +1,7 @@
 class Borrower < ActiveRecord::Base
   has_secure_password
+  has_many :histories
+  has_many :patron, through: :histories, source: :lender
   before_save { self.email = email.downcase }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email,

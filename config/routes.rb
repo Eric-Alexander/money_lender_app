@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'sessions#register'
-
-  post 'sessions/new' => 'sessions#create'
+  post   'login'   => 'sessions#create'
+  # post 'sessions/new' => 'sessions#create'
 
   resources :lenders, only: [:create, :show]
 
