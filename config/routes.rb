@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
   root 'sessions#register'
-  post   'login'   => 'sessions#create'
+  get   '/login'   => 'sessions#login'
+  post   '/login'   => 'sessions#create'
+  post '/lender' => "lenders#create"
+  post '/borrower' => "borrowers#create"
+  get '/borrowers/:id' => "borrowers#show"
+  get '/lender/:id' => "lenders#show"
+  post '/history' => "histories#create"
   # post 'sessions/new' => 'sessions#create'
 
-  resources :lenders, only: [:create, :show]
+  resources :lenders
 
-  resources :borrowers, only: [:create, :show]
+  resources :borrowers
 
-  resources :sessions, only:  [:create, :register, :new, :destroy]
+  resources :sessions
 
 
 

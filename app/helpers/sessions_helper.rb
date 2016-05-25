@@ -3,7 +3,14 @@ module SessionsHelper
     session[:user_id] = user.id
   end
   def current_user
-      @current_user ||= User.find_by(id: session[:user_id])
+    if session[:user_id]
+  		if session[:user_type] == "lender"
+  			return Lender.find(session[:user_id])
+  		else
+  			return Borrower.find(session[:user_id])
+  		end
+  	end
+  	return nil
   end
   def logged_in?
       !current_user.nil?

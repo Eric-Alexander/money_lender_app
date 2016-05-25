@@ -1,4 +1,4 @@
-class CreateHistories < ActiveRecord::Migration
+class CreateHistoriesTable < ActiveRecord::Migration
   def change
     create_table :histories do |t|
       t.integer :amount

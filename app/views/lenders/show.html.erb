@@ -24,7 +24,12 @@
           <td> <%= b.description %> </td>
           <td> <%= number_to_currency(b.money_needed) %> </td>
           <td> <%= number_to_currency(b.money_raised) %> </td>
-          <td> Button </td>
+          <td><form action="/history" method="post">
+							<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+							<input type="hidden" name="borrower_id" value="<%= b.id %>">
+							$<input type="number" name="amount" value=20 style="width: 50px;">&nbsp;<input type="submit" value="Lend">
+            </form>
+          </td>
         </tr>
         <% end %>
       </tbody>
@@ -46,14 +51,14 @@
           </tr>
         </thead>
         <tbody>
-          <% @borrowers.each do |b| %>
+          <% @loans_given.each do |l| %>
           <tr>
-            <td> <%= b.first_name %> <%= b.last_name %> </td>
-            <td> <%= b.money_purpose %> </td>
-            <td> <%= b.description %> </td>
-            <td> <%= number_to_currency(b.money_needed) %> </td>
-            <td> <%= number_to_currency(b.money_raised) %> </td>
-            <td> Button </td>
+            <td> <%= l.first_name %> <%= l.last_name %> </td>
+            <td> <%= l.money_purpose %> </td>
+            <td> <%= l.description %> </td>
+            <td> <%= number_to_currency(l.money_needed) %> </td>
+            <td> <%= number_to_currency(l.money_raised) %> </td>
+            <td> <%= number_to_currency(l.amount) %>  </td>
           </tr>
           <% end %>
         </tbody>

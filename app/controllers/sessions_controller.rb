@@ -1,52 +1,46 @@
 class SessionsController < ApplicationController
-  def new
-
-
-
-
-  end
-  def create
-    puts "___________________________________"
-    user = Lender.find_by(email: params["session"][:email].downcase)
-    puts user
-    if user
-      if user.authenticate(params[:session][:password])
-        log_in user
-        flash[:success] = "Welcome Back!"
-        puts "+++++++++++++++++++++++++++++++"
-
-        redirect_to "/lenders/#{user.id}"
-      else
-        flash[:errors] = ["Incorrect password for email"]
-        redirect_to :back
-      end
-    else
-      user = Borrower.find_by(email: params["session"][:email].downcase)
-      if user
-        if user.authenticate(params[:password])
-          log_in user
-          redirect_to "/borrowers/#{user.id}"
-        else
-          flash[:errors] = ["Incorrect password for email"]
-          redirect_to :back
-        end
-      else
-        flash[:errors] = "User not found."
-        flash[:errors] = "User NEVER found"
-        puts "|||||||||||||||||||||||||||||||||"
-        redirect_to :back
-
-      end
-    end
+  def login
+  	render "new"
   end
 
   def register
-    @lender = Lender.new
-    @borrower = Borrower.new
+  	@lender = Lender.new
+  	@borrower = Borrower.new
+  	render "register"
   end
+
+  def create
+  	user = Lender.find_by email: params[:email]
+  	if user
+  		if user.authenticate(params[:password])
+  			session[:user_type] = "lender"
+        log_in user
+  			redirect_to "/lender/#{user.id}"
+  		else
+  			flash[:errors] = ["Incorrect password"]
+  			redirect_to :back
+  		end
+  	else
+  		user = Borrower.find_by email: params[:email]
+  		if user
+  			if user.authenticate(params[:password])
+  				session[:user_type] = "borrower"
+          log_in user
+  				redirect_to "/borrowers/#{user.id}"
+  			else
+  				flash[:errors] = ["Incorrect password"]
+  				redirect_to :back
+  			end
+  		else
+  			flash[:errors] = ["E-mail address not found"]
+  			redirect_to :back
+  		end
+  	end
+  end
+
   def destroy
-    log_out
-    flash[:success] = "Successful Logout."
-    redirect_to root_url
+  	session[:user_id] = nil
+  	session[:user_type] = nil
+  	redirect_to root_path
   end
 end

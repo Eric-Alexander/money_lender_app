@@ -1,7 +1,8 @@
 class LendersController < ApplicationController
   def show
     @lender = Lender.find(params[:id])
-    @borrowers = Borrower.all
+    @borrowers = Borrower.where("money_needed > money_raised").order(money_needed: :desc)
+    @loans_given = History.where(lender: @lender).joins(:borrower).select("borrowers.first_name, borrowers.last_name, borrowers.money_needed, borrowers.money_raised, borrowers.description, borrowers.money_purpose, amount")
   end
   def create
     @lender = Lender.create(lender_params)
